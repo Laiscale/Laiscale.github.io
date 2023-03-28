@@ -1140,7 +1140,10 @@ pre .javascript .function {
   display: block;
   margin: 0 auto;
   max-width: 96px;
+  height: $site-author-image-height;
   padding: 2px;
+  border-radius: 50%;
+  transition: 2s all;
 }
 .site-author-name {
   color: #f5f5f5;
@@ -1168,7 +1171,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #041a70;
+  background: #57ff6e;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1513,11 +1516,6 @@ pre .javascript .function {
   overflow-wrap: break-word;
   word-wrap: break-word;
 }
-@media (min-width: 1200px) {
-  .post-body {
-    font-size: 1.125em;
-  }
-}
 .post-body .exturl .fa {
   font-size: 0.875em;
   margin-left: 4px;
@@ -1531,9 +1529,21 @@ pre .javascript .function {
   margin: -20px auto 15px;
   text-align: center;
 }
+.post-body p a {
+  color: #0593d3;
+  border-bottom: none;
+}
+.post-body p a:hover {
+  color: #ff106c;
+  text-decoration: underline;
+}
 .post-sticky-flag {
   display: inline-block;
   transform: rotate(30deg);
+}
+.post-button {
+  margin-top: 40px;
+  text-align: center;
 }
 .post-button .btn {
   color: #555 !important;
