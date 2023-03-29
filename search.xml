@@ -1,143 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>LeetCode_771-宝石与石头</title>
-    <url>/Neymarsss/Neymarsss.github.io/2023/03/29/7870dad5b771/</url>
-    <content><![CDATA[<h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><p><a href="https://leetcode.cn/problems/jewels-and-stones/">LeetCode_771-宝石与石头</a></p>
-<h2 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h2><p>字符串，哈希表</p>
-<h2 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h2><p>给你一个字符串 jewels 代表石头中宝石的类型，另有一个字符串 stones 代表你拥有的石头。 stones 中每个字符代表了一种你拥有的石头的类型，你想知道你拥有的石头中有多少是宝石。</p>
-<p>字母区分大小写，因此 “a” 和 “A” 是不同类型的石头。</p>
-<ul>
-<li><code>jewels</code> 中的所有字符都是 <strong>唯一的</strong></li>
-</ul>
-<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><pre><code class="java">输入：jewels = &quot;aA&quot;, stones = &quot;aAAbbbb&quot;
-输出：3
-    
-输入：jewels = &quot;z&quot;, stones = &quot;ZZ&quot;
-输出：0
-</code></pre>
-<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><pre><code class="java">class Solution &#123;
-    public int numJewelsInStones(String jewels, String stones) &#123;
-        Set&lt;Character&gt; set = new HashSet&lt;&gt;();
-        for(int i = 0; i &lt; jewels.length(); i++) &#123;
-            set.add(jewels.charAt(i));
-        &#125;
-        int count = 0;
-        for(int j = 0; j &lt; stones.length(); j++) &#123;
-            //需要注意的是Set中判断是否存在key用contains(), 不是containsKey()
-            if(set.contains(stones.charAt(j))) &#123;
-                count++;
-            &#125;
-        &#125;
-        return count;
-    &#125;
-&#125;
-</code></pre>
-]]></content>
-      <categories>
-        <category>LeetCode</category>
-      </categories>
-      <tags>
-        <tag>字符串</tag>
-        <tag>哈希表</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>LeetCode_709-转换成小写字母</title>
-    <url>/Neymarsss/Neymarsss.github.io/2023/03/29/8ab92c6f780d/</url>
-    <content><![CDATA[<h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><p><a href="https://leetcode.cn/problems/to-lower-case/">LeetCode_709-转换成小写字母</a></p>
-<h2 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h2><p>字符串</p>
-<h2 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h2><p>给你一个字符串 <code>s</code> ，将该字符串中的大写字母转换成相同的小写字母，返回新的字符串。</p>
-<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><pre><code class="java">输入：s = &quot;Hello&quot;
-输出：&quot;hello&quot;
-    
-输入：s = &quot;here&quot;
-输出：&quot;here&quot;
-    
-输入：s = &quot;LOVELY&quot;
-输出：&quot;lovely&quot;
-</code></pre>
-<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><pre><code class="java">class Solution &#123;
-    public String toLowerCase(String s) &#123;
-        //方法一（一个个字符判断）
-        StringBuffer ans = new StringBuffer();
-        for(int i = 0; i &lt; s.length(); i++) &#123;
-            char ch = s.charAt(i);
-            if(ch &gt;= &#39;A&#39; &amp;&amp; ch &lt;= &#39;Z&#39;) &#123;
-                //先将字符ch转换为整型计算ASCII码，再转换为字符型输出字符
-                //A~Z的ASCII码为65~90，字符a~z的ASCII码为97~122，
-                //每个大小写字符的ASCII码都相差32,因此用大写字符的ASCII码 加上32即可得到该字符的小写形式
-                ch = (char) (ch + 32);
-                ans.append(ch);
-            &#125;
-            else &#123;
-                ans.append(ch);
-            &#125;
-        &#125;
-        return ans.toString();
-        
-        //方法二（调用函数）
-        //仅需一行代码 //toUpperCase()为将小写字符串转变为大写字符串
-        return s.toLowerCase();
-    &#125;
-&#125;
-</code></pre>
-]]></content>
-      <categories>
-        <category>LeetCode</category>
-      </categories>
-      <tags>
-        <tag>字符串</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>LeetCode_657-机器人能否返回原点</title>
-    <url>/Neymarsss/Neymarsss.github.io/2023/03/29/25ac54a4a790/</url>
-    <content><![CDATA[<h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><p><a href="https://leetcode.cn/problems/robot-return-to-origin/">LeetCode_657-机器人能否返回原点</a></p>
-<h2 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h2><p>字符串</p>
-<h2 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h2><p>在二维平面上，有一个机器人从原点 (0, 0) 开始。给出它的移动顺序，判断这个机器人在完成移动后是否在 (0, 0) 处结束。</p>
-<p>移动顺序由字符串 moves 表示。字符 move[i] 表示其第 i 次移动。机器人的有效动作有 R（右），L（左），U（上）和 D（下）。</p>
-<p>如果机器人在完成所有动作后返回原点，则返回 true。否则，返回 false。</p>
-<p><strong>注意：机器人“面朝”的方向无关紧要。</strong> “R” 将始终使机器人向右移动一次，“L” 将始终向左移动等。此外，假设每次移动机器人的移动幅度相同。</p>
-<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><pre><code class="java">输入: moves = &quot;UD&quot;
-输出: true
-解释：机器人向上移动一次，然后向下移动一次。所有动作都具有相同的幅度，因此它最终回到它开始的原点。因此，我们返回 true。
-
-输入: moves = &quot;LL&quot;
-输出: false
-解释：机器人向左移动两次。它最终位于原点的左侧，距原点有两次 “移动” 的距离。我们返回 false，因为它在移动结束时没有返回原点。
-</code></pre>
-<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><pre><code class="java">class Solution &#123;
-    public boolean judgeCircle(String moves) &#123;
-        int u = 0;
-        int d = 0;
-        int l = 0;
-        int r = 0;
-        for(int k = 0; k &lt; moves.length(); k++) &#123;
-            char ch = moves.charAt(k);
-            //**注意：机器人“面朝”的方向无关紧要**
-            //没什么好说的
-            if(ch == &#39;L&#39;) l++;
-            if(ch == &#39;R&#39;) r++;
-            if(ch == &#39;U&#39;) u++;
-            if(ch == &#39;D&#39;) d++;
-        &#125;
-        if(l == r &amp;&amp; u == d) return true;
-        return false;
-    &#125;
-&#125;
-</code></pre>
-]]></content>
-      <categories>
-        <category>LeetCode</category>
-      </categories>
-      <tags>
-        <tag>字符串</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>LeetCode_242-有效的字母异位词</title>
-    <url>/Neymarsss/Neymarsss.github.io/2023/03/29/34a2e1c85f37/</url>
+    <url>/2023/03/29/34a2e1c85f37/</url>
     <content><![CDATA[<h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><p><a href="https://leetcode.cn/problems/valid-anagram/">LeetCode_242-有效的字母异位词</a></p>
 <h2 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h2><p>字符串, 哈希表，位运算</p>
 <h2 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h2><p>给定两个字符串 s 和 t ，编写一个函数来判断 t 是否是 s 的字母异位词。</p>
@@ -245,45 +110,38 @@
       </tags>
   </entry>
   <entry>
-    <title>LeetCode_804-唯一摩尔斯密码词</title>
-    <url>/Neymarsss/Neymarsss.github.io/2023/03/29/76ec1b507256/</url>
-    <content><![CDATA[<h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><p><a href="https://leetcode.cn/problems/unique-morse-code-words/">LeetCode_804-唯一摩尔斯密码词</a></p>
-<h2 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h2><p>字符串， 哈希表</p>
-<h2 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h2><p>国际摩尔斯密码定义一种标准编码方式，将每个字母对应于一个由一系列点和短线组成的字符串， 比如:</p>
-<p>‘a’ 对应 “.-“ ，<br>‘b’ 对应 “-…” ，<br>‘c’ 对应 “-.-.” ，以此类推。<br>为了方便，所有 26 个英文字母的摩尔斯密码表如下：</p>
-<p>[“.-“,”-…”,”-.-.”,”-..”,”.”,”..-.”,”–.”,”….”,”..”,”.—“,”-.-“,”.-..”,”–”,”-.”,”—“,”.–.”,”–.-“,”.-.”,”…”,”-“,”..-“,”…-“,”.–”,”-..-“,”-.–”,”–..”]<br>给你一个字符串数组 words ，每个单词可以写成每个字母对应摩尔斯密码的组合。</p>
-<p>例如，”cab” 可以写成 “-.-..–…” ，(即 “-.-.” + “.-“ + “-…” 字符串的结合)。我们将这样一个连接过程称作 单词翻译 。<br>对 words 中所有单词进行单词翻译，返回不同 单词翻译 的数量。</p>
-<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><pre><code class="java">输入: words = [&quot;gin&quot;, &quot;zen&quot;, &quot;gig&quot;, &quot;msg&quot;]
-输出: 2
-解释: 
-各单词翻译如下:
-&quot;gin&quot; -&gt; &quot;--...-.&quot;
-&quot;zen&quot; -&gt; &quot;--...-.&quot;
-&quot;gig&quot; -&gt; &quot;--...--.&quot;
-&quot;msg&quot; -&gt; &quot;--...--.&quot;
-
-共有 2 种不同翻译, &quot;--...-.&quot; 和 &quot;--...--.&quot;.
-
-输入：words = [&quot;a&quot;]
-输出：1
+    <title>LeetCode_415-字符串相加</title>
+    <url>/2023/03/29/3370c052b901/</url>
+    <content><![CDATA[<h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><p><a href="https://leetcode.cn/problems/add-strings/">LeetCode_415-字符串相加</a></p>
+<h2 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h2><p>字符串</p>
+<h2 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h2><p>给定两个字符串形式的非负整数 num1 和num2 ，计算它们的和并同样以字符串形式返回。</p>
+<p>你不能使用任何內建的用于处理大整数的库（比如 BigInteger）， 也不能直接将输入的字符串转换为整数形式。</p>
+<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><pre><code class="java">输入：num1 = &quot;11&quot;, num2 = &quot;123&quot;
+输出：&quot;134&quot;
+    
+输入：num1 = &quot;456&quot;, num2 = &quot;77&quot;
+输出：&quot;533&quot;
 </code></pre>
 <h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><pre><code class="java">class Solution &#123;
-    public int uniqueMorseRepresentations(String[] words) &#123;
-        Set&lt;String&gt; set = new HashSet&lt;&gt;();
-        for(String word : words) &#123;
-            int len = word.length();
-            StringBuffer ans = new StringBuffer();
-            for(int i = 0; i &lt; len; i++) &#123;
-                char ch = word.charAt(i);
-                ans.append(Morse[ch - &#39;a&#39;]);
-            &#125;
-            set.add(ans.toString());
+    public String addStrings(String num1, String num2) &#123;
+        int add = 0;
+        int i = num1.length() - 1;
+        int j = num2.length() - 1;
+        StringBuffer ans = new StringBuffer();
+        while(i &gt;= 0 || j &gt;= 0 || add != 0) &#123;
+            //两个数字位数不同怎么处理，这里我们统一在指针当前下标处于负数的时候返回0
+            //等价于对位数较短的数字进行了补零操作，这样就可以除去两个数字位数不同情况的处理
+            int x = i &gt;= 0? num1.charAt(i) - &#39;0&#39; : 0;
+            int y = j &gt;= 0? num2.charAt(j) - &#39;0&#39; : 0;
+            int sum = x + y + add;
+            ans.append(sum % 10);
+            add = sum / 10;
+            i--;
+            j--;
         &#125;
-        return set.size();
+        ans.reverse();
+        return ans.toString();
     &#125;
-
-    public static final String Morse[] = &#123;&quot;.-&quot;,&quot;-...&quot;,&quot;-.-.&quot;,&quot;-..&quot;,&quot;.&quot;,&quot;..-.&quot;,&quot;--.&quot;,&quot;....&quot;,&quot;..&quot;,&quot;.---&quot;,&quot;-.-&quot;,&quot;.-..&quot;,&quot;--&quot;,&quot;-.&quot;,&quot;---&quot;,&quot;.--.&quot;,&quot;--.-&quot;,&quot;.-.&quot;,&quot;...&quot;,&quot;-&quot;,&quot;..-&quot;,&quot;...-&quot;,&quot;.--&quot;,&quot;-..-&quot;,&quot;-.--&quot;,&quot;--..&quot;&#125;;
-
 &#125;
 </code></pre>
 ]]></content>
@@ -292,12 +150,52 @@
       </categories>
       <tags>
         <tag>字符串</tag>
-        <tag>哈希表</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LeetCode_521-最长特殊序列Ⅰ</title>
+    <url>/2023/03/29/2fc927ffcb4b/</url>
+    <content><![CDATA[<h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><p><a href="https://leetcode.cn/problems/longest-uncommon-subsequence-i/">LeetCode_521-最长特殊序列Ⅰ</a></p>
+<h2 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h2><p>字符串</p>
+<h2 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h2><p>给你两个字符串 a 和 b，请返回 这两个字符串中 最长的特殊序列  的长度。如果不存在，则返回 -1 。</p>
+<p>「最长特殊序列」 定义如下：该序列为 某字符串独有的最长子序列（即不能是其他字符串的子序列） 。</p>
+<p>字符串 s 的子序列是在从 s 中删除任意数量的字符后可以获得的字符串。</p>
+<p>例如，”abc” 是 “aebdc” 的子序列，因为删除 “aebdc” 中斜体加粗的字符可以得到 “abc” 。 “aebdc” 的子序列还包括 “aebdc” 、 “aeb” 和 “” (空字符串)。</p>
+<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><pre><code class="java">输入: a = &quot;aba&quot;, b = &quot;cdc&quot;
+输出: 3
+解释: 最长特殊序列可为 &quot;aba&quot; (或 &quot;cdc&quot;)，两者均为自身的子序列且不是对方的子序列。
+
+输入：a = &quot;aaa&quot;, b = &quot;bbb&quot;
+输出：3
+解释: 最长特殊序列是 &quot;aaa&quot; 和 &quot;bbb&quot; 。
+   
+输入：a = &quot;aaa&quot;, b = &quot;aaa&quot;
+输出：-1
+解释: 字符串 a 的每个子序列也是字符串 b 的每个子序列。同样，字符串 b 的每个子序列也是字符串 a 的子序列。
+</code></pre>
+<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><pre><code class="java">class Solution &#123;
+    public int findLUSlength(String a, String b) &#123;
+        //s1 = &#39;ab&#39;,s2 = &#39;a&#39;,因为ab是s1独有，所以最长子序列为ab，
+        //s1 = &#39;ab&#39;, s2 = &#39;ab&#39;, 因为ab是两个串都有，ab排除，a也是两个串都有，排除，b也是两个串都有，排除。
+        //所以最长特殊序列不存在，返回-1
+        //通过以上分析，我们可以得出结论，如果：两个串相等（不仅长度相等，内容也相等），那么他们的最长特殊序列不存在。返回-1
+        //如果两个串长度不一样，那么长的串 永远也不可能是 短串的子序列，
+        //即len(s1) &gt; len(s2),则最长特殊序列为s1,返回长度大的数 
+        return !a.equals(b) ? Math.max(a.length(), b.length()) : -1;
+    &#125;
+&#125;
+</code></pre>
+]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>字符串</tag>
       </tags>
   </entry>
   <entry>
     <title>LeetCode_525-检测大写字母</title>
-    <url>/Neymarsss/Neymarsss.github.io/2023/03/29/7c403eebe015/</url>
+    <url>/2023/03/29/7c403eebe015/</url>
     <content><![CDATA[<h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><p><a href="https://leetcode.cn/problems/detect-capital/">LeetCode_525-检测大写字母</a></p>
 <h2 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h2><p>字符串</p>
 <h2 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h2><p>我们定义，在以下情况时，单词的大写用法是正确的：</p>
@@ -344,37 +242,39 @@
       </tags>
   </entry>
   <entry>
-    <title>LeetCode_415-字符串相加</title>
-    <url>/Neymarsss/Neymarsss.github.io/2023/03/29/3370c052b901/</url>
-    <content><![CDATA[<h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><p><a href="https://leetcode.cn/problems/add-strings/">LeetCode_415-字符串相加</a></p>
+    <title>LeetCode_657-机器人能否返回原点</title>
+    <url>/2023/03/29/25ac54a4a790/</url>
+    <content><![CDATA[<h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><p><a href="https://leetcode.cn/problems/robot-return-to-origin/">LeetCode_657-机器人能否返回原点</a></p>
 <h2 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h2><p>字符串</p>
-<h2 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h2><p>给定两个字符串形式的非负整数 num1 和num2 ，计算它们的和并同样以字符串形式返回。</p>
-<p>你不能使用任何內建的用于处理大整数的库（比如 BigInteger）， 也不能直接将输入的字符串转换为整数形式。</p>
-<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><pre><code class="java">输入：num1 = &quot;11&quot;, num2 = &quot;123&quot;
-输出：&quot;134&quot;
-    
-输入：num1 = &quot;456&quot;, num2 = &quot;77&quot;
-输出：&quot;533&quot;
+<h2 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h2><p>在二维平面上，有一个机器人从原点 (0, 0) 开始。给出它的移动顺序，判断这个机器人在完成移动后是否在 (0, 0) 处结束。</p>
+<p>移动顺序由字符串 moves 表示。字符 move[i] 表示其第 i 次移动。机器人的有效动作有 R（右），L（左），U（上）和 D（下）。</p>
+<p>如果机器人在完成所有动作后返回原点，则返回 true。否则，返回 false。</p>
+<p><strong>注意：机器人“面朝”的方向无关紧要。</strong> “R” 将始终使机器人向右移动一次，“L” 将始终向左移动等。此外，假设每次移动机器人的移动幅度相同。</p>
+<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><pre><code class="java">输入: moves = &quot;UD&quot;
+输出: true
+解释：机器人向上移动一次，然后向下移动一次。所有动作都具有相同的幅度，因此它最终回到它开始的原点。因此，我们返回 true。
+
+输入: moves = &quot;LL&quot;
+输出: false
+解释：机器人向左移动两次。它最终位于原点的左侧，距原点有两次 “移动” 的距离。我们返回 false，因为它在移动结束时没有返回原点。
 </code></pre>
 <h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><pre><code class="java">class Solution &#123;
-    public String addStrings(String num1, String num2) &#123;
-        int add = 0;
-        int i = num1.length() - 1;
-        int j = num2.length() - 1;
-        StringBuffer ans = new StringBuffer();
-        while(i &gt;= 0 || j &gt;= 0 || add != 0) &#123;
-            //两个数字位数不同怎么处理，这里我们统一在指针当前下标处于负数的时候返回0
-            //等价于对位数较短的数字进行了补零操作，这样就可以除去两个数字位数不同情况的处理
-            int x = i &gt;= 0? num1.charAt(i) - &#39;0&#39; : 0;
-            int y = j &gt;= 0? num2.charAt(j) - &#39;0&#39; : 0;
-            int sum = x + y + add;
-            ans.append(sum % 10);
-            add = sum / 10;
-            i--;
-            j--;
+    public boolean judgeCircle(String moves) &#123;
+        int u = 0;
+        int d = 0;
+        int l = 0;
+        int r = 0;
+        for(int k = 0; k &lt; moves.length(); k++) &#123;
+            char ch = moves.charAt(k);
+            //**注意：机器人“面朝”的方向无关紧要**
+            //没什么好说的
+            if(ch == &#39;L&#39;) l++;
+            if(ch == &#39;R&#39;) r++;
+            if(ch == &#39;U&#39;) u++;
+            if(ch == &#39;D&#39;) d++;
         &#125;
-        ans.reverse();
-        return ans.toString();
+        if(l == r &amp;&amp; u == d) return true;
+        return false;
     &#125;
 &#125;
 </code></pre>
@@ -387,35 +287,56 @@
       </tags>
   </entry>
   <entry>
-    <title>LeetCode_521-最长特殊序列Ⅰ</title>
-    <url>/Neymarsss/Neymarsss.github.io/2023/03/29/2fc927ffcb4b/</url>
-    <content><![CDATA[<h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><p><a href="https://leetcode.cn/problems/longest-uncommon-subsequence-i/">LeetCode_521-最长特殊序列Ⅰ</a></p>
-<h2 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h2><p>字符串</p>
-<h2 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h2><p>给你两个字符串 a 和 b，请返回 这两个字符串中 最长的特殊序列  的长度。如果不存在，则返回 -1 。</p>
-<p>「最长特殊序列」 定义如下：该序列为 某字符串独有的最长子序列（即不能是其他字符串的子序列） 。</p>
-<p>字符串 s 的子序列是在从 s 中删除任意数量的字符后可以获得的字符串。</p>
-<p>例如，”abc” 是 “aebdc” 的子序列，因为删除 “aebdc” 中斜体加粗的字符可以得到 “abc” 。 “aebdc” 的子序列还包括 “aebdc” 、 “aeb” 和 “” (空字符串)。</p>
-<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><pre><code class="java">输入: a = &quot;aba&quot;, b = &quot;cdc&quot;
-输出: 3
-解释: 最长特殊序列可为 &quot;aba&quot; (或 &quot;cdc&quot;)，两者均为自身的子序列且不是对方的子序列。
+    <title>LeetCode_496-下一个更大元素I</title>
+    <url>/2023/03/29/2bbb7778feb5/</url>
+    <content><![CDATA[<h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><p><a href="https://leetcode.cn/problems/next-greater-element-i/">LeetCode_496-下一个更大元素I</a></p>
+<h2 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h2><p>哈希表， 字符串</p>
+<h2 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h2><p>nums1 中数字 x 的 下一个更大元素 是指 x 在 nums2 中对应位置 右侧 的 第一个 比 x 大的元素。</p>
+<p>给你两个 没有重复元素 的数组 nums1 和 nums2 ，下标从 0 开始计数，其中nums1 是 nums2 的子集。</p>
+<p>对于每个 0 &lt;&#x3D; i &lt; nums1.length ，找出满足 nums1[i] &#x3D;&#x3D; nums2[j] 的下标 j ，并且在 nums2 确定 nums2[j] 的 下一个更大元素 。如果不存在下一个更大元素，那么本次查询的答案是 -1 。</p>
+<p>返回一个长度为 nums1.length 的数组 ans 作为答案，满足 ans[i] 是如上所述的 下一个更大元素 。</p>
+<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><pre><code class="java">输入：nums1 = [4,1,2], nums2 = [1,3,4,2].
+输出：[-1,3,-1]
+解释：nums1 中每个值的下一个更大元素如下所述：
+- 4 ，用加粗斜体标识，nums2 = [1,3,4,2]。不存在下一个更大元素，所以答案是 -1 。
+- 1 ，用加粗斜体标识，nums2 = [1,3,4,2]。下一个更大元素是 3 。
+- 2 ，用加粗斜体标识，nums2 = [1,3,4,2]。不存在下一个更大元素，所以答案是 -1 。
 
-输入：a = &quot;aaa&quot;, b = &quot;bbb&quot;
-输出：3
-解释: 最长特殊序列是 &quot;aaa&quot; 和 &quot;bbb&quot; 。
-   
-输入：a = &quot;aaa&quot;, b = &quot;aaa&quot;
-输出：-1
-解释: 字符串 a 的每个子序列也是字符串 b 的每个子序列。同样，字符串 b 的每个子序列也是字符串 a 的子序列。
+输入：nums1 = [2,4], nums2 = [1,2,3,4].
+输出：[3,-1]
+解释：nums1 中每个值的下一个更大元素如下所述：
+- 2 ，用加粗斜体标识，nums2 = [1,2,3,4]。下一个更大元素是 3 。
+- 4 ，用加粗斜体标识，nums2 = [1,2,3,4]。不存在下一个更大元素，所以答案是 -1 。
 </code></pre>
 <h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><pre><code class="java">class Solution &#123;
-    public int findLUSlength(String a, String b) &#123;
-        //s1 = &#39;ab&#39;,s2 = &#39;a&#39;,因为ab是s1独有，所以最长子序列为ab，
-        //s1 = &#39;ab&#39;, s2 = &#39;ab&#39;, 因为ab是两个串都有，ab排除，a也是两个串都有，排除，b也是两个串都有，排除。
-        //所以最长特殊序列不存在，返回-1
-        //通过以上分析，我们可以得出结论，如果：两个串相等（不仅长度相等，内容也相等），那么他们的最长特殊序列不存在。返回-1
-        //如果两个串长度不一样，那么长的串 永远也不可能是 短串的子序列，
-        //即len(s1) &gt; len(s2),则最长特殊序列为s1,返回长度大的数 
-        return !a.equals(b) ? Math.max(a.length(), b.length()) : -1;
+    public int[] nextGreaterElement(int[] nums1, int[] nums2) &#123;
+        //nums1 是 nums2 的子集
+        HashMap&lt;Integer, Integer&gt; map = new HashMap&lt;&gt;();
+        int n1 = nums1.length;
+        int n2 = nums2.length;
+        int[] ans = new int[n1];
+        //可以记录nums2中：将每一个数字作为key，位置下标为value
+        for(int m = 0; m &lt; n2; m++) &#123;
+            map.put(nums2[m], m);
+        &#125;
+        //遍历nums1，获取每一个数字
+        for(int i = 0; i &lt; n1; i++) &#123;
+            //然后从map中获取该数字对应的下标（该下标对应的是nums2中该数字的下标）
+            int k = map.get(nums1[i]);
+            //做该判断是因为如果k为nums2的最后一个数字的话，下方的j=k+1就会越界
+            //所以如果该数字如果为nums2的最后一个数字的话，name他一定没有比它大的下一个元素，返回-1。
+            if(k == n2 - 1) ans[i] = -1; 
+            for(int j = k + 1; j &lt; n2; j++) &#123;
+                if(nums2[j] &gt; nums2[k]) &#123;
+                    ans[i] = nums2[j];
+                    break;
+                &#125;
+                if(j == n2 - 1 &amp;&amp; nums2[j] &lt;= nums2[k]) &#123;
+                    ans[i] = -1;
+                &#125;
+            &#125;
+        &#125;
+        return ans;
     &#125;
 &#125;
 </code></pre>
@@ -425,17 +346,108 @@
       </categories>
       <tags>
         <tag>字符串</tag>
+        <tag>哈希表</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LeetCode_709-转换成小写字母</title>
+    <url>/2023/03/29/8ab92c6f780d/</url>
+    <content><![CDATA[<h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><p><a href="https://leetcode.cn/problems/to-lower-case/">LeetCode_709-转换成小写字母</a></p>
+<h2 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h2><p>字符串</p>
+<h2 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h2><p>给你一个字符串 <code>s</code> ，将该字符串中的大写字母转换成相同的小写字母，返回新的字符串。</p>
+<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><pre><code class="java">输入：s = &quot;Hello&quot;
+输出：&quot;hello&quot;
+    
+输入：s = &quot;here&quot;
+输出：&quot;here&quot;
+    
+输入：s = &quot;LOVELY&quot;
+输出：&quot;lovely&quot;
+</code></pre>
+<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><pre><code class="java">class Solution &#123;
+    public String toLowerCase(String s) &#123;
+        //方法一（一个个字符判断）
+        StringBuffer ans = new StringBuffer();
+        for(int i = 0; i &lt; s.length(); i++) &#123;
+            char ch = s.charAt(i);
+            if(ch &gt;= &#39;A&#39; &amp;&amp; ch &lt;= &#39;Z&#39;) &#123;
+                //先将字符ch转换为整型计算ASCII码，再转换为字符型输出字符
+                //A~Z的ASCII码为65~90，字符a~z的ASCII码为97~122，
+                //每个大小写字符的ASCII码都相差32,因此用大写字符的ASCII码 加上32即可得到该字符的小写形式
+                ch = (char) (ch + 32);
+                ans.append(ch);
+            &#125;
+            else &#123;
+                ans.append(ch);
+            &#125;
+        &#125;
+        return ans.toString();
+        
+        //方法二（调用函数）
+        //仅需一行代码 //toUpperCase()为将小写字符串转变为大写字符串
+        return s.toLowerCase();
+    &#125;
+&#125;
+</code></pre>
+]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>字符串</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LeetCode_771-宝石与石头</title>
+    <url>/2023/03/29/7870dad5b771/</url>
+    <content><![CDATA[<h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><p><a href="https://leetcode.cn/problems/jewels-and-stones/">LeetCode_771-宝石与石头</a></p>
+<h2 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h2><p>字符串，哈希表</p>
+<h2 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h2><p>给你一个字符串 jewels 代表石头中宝石的类型，另有一个字符串 stones 代表你拥有的石头。 stones 中每个字符代表了一种你拥有的石头的类型，你想知道你拥有的石头中有多少是宝石。</p>
+<p>字母区分大小写，因此 “a” 和 “A” 是不同类型的石头。</p>
+<ul>
+<li><code>jewels</code> 中的所有字符都是 <strong>唯一的</strong></li>
+</ul>
+<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><pre><code class="java">输入：jewels = &quot;aA&quot;, stones = &quot;aAAbbbb&quot;
+输出：3
+    
+输入：jewels = &quot;z&quot;, stones = &quot;ZZ&quot;
+输出：0
+</code></pre>
+<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><pre><code class="java">class Solution &#123;
+    public int numJewelsInStones(String jewels, String stones) &#123;
+        Set&lt;Character&gt; set = new HashSet&lt;&gt;();
+        for(int i = 0; i &lt; jewels.length(); i++) &#123;
+            set.add(jewels.charAt(i));
+        &#125;
+        int count = 0;
+        for(int j = 0; j &lt; stones.length(); j++) &#123;
+            //需要注意的是Set中判断是否存在key用contains(), 不是containsKey()
+            if(set.contains(stones.charAt(j))) &#123;
+                count++;
+            &#125;
+        &#125;
+        return count;
+    &#125;
+&#125;
+</code></pre>
+]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>字符串</tag>
+        <tag>哈希表</tag>
       </tags>
   </entry>
   <entry>
     <title>LeetCode_929-独特的电子邮件地址</title>
-    <url>/Neymarsss/Neymarsss.github.io/2023/03/29/880149c0df5f/</url>
+    <url>/2023/03/29/880149c0df5f/</url>
     <content><![CDATA[<h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><p><a href="https://leetcode.cn/problems/unique-email-addresses/">LeetCode_929-独特的电子邮件地址</a></p>
 <h2 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h2><p>哈希表， 字符串</p>
 <h2 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h2><p>每个 有效电子邮件地址 都由一个 本地名 和一个 域名 组成，以 ‘@’ 符号分隔。除小写字母之外，电子邮件地址还可以含有一个或多个 ‘.’ 或 ‘+’ 。</p>
-<p>例如，在 <a href="mailto:&#97;&#x6c;&#105;&#99;&#x65;&#64;&#x6c;&#x65;&#101;&#116;&#99;&#x6f;&#x64;&#x65;&#46;&#x63;&#x6f;&#109;">&#97;&#x6c;&#105;&#99;&#x65;&#64;&#x6c;&#x65;&#101;&#116;&#99;&#x6f;&#x64;&#x65;&#46;&#x63;&#x6f;&#109;</a>中， alice 是 本地名 ，而 leetcode.com 是 域名 。<br>如果在电子邮件地址的 本地名 部分中的某些字符之间添加句点（’.’），则发往那里的邮件将会转发到本地名中没有点的同一地址。请注意，此规则 不适用于域名 。</p>
-<p>例如，”<a href="mailto:&#x61;&#x6c;&#x69;&#x63;&#x65;&#46;&#122;&#x40;&#108;&#x65;&#101;&#x74;&#99;&#x6f;&#100;&#101;&#x2e;&#x63;&#111;&#x6d;">&#x61;&#x6c;&#x69;&#x63;&#x65;&#46;&#122;&#x40;&#108;&#x65;&#101;&#x74;&#99;&#x6f;&#100;&#101;&#x2e;&#x63;&#111;&#x6d;</a>” 和 “<a href="mailto:&#97;&#108;&#105;&#x63;&#101;&#x7a;&#x40;&#x6c;&#x65;&#101;&#116;&#99;&#x6f;&#100;&#101;&#x2e;&#x63;&#111;&#109;">&#97;&#108;&#105;&#x63;&#101;&#x7a;&#x40;&#x6c;&#x65;&#101;&#116;&#99;&#x6f;&#100;&#101;&#x2e;&#x63;&#111;&#109;</a>” 会转发到同一电子邮件地址。<br>如果在 本地名 中添加加号（’+’），则会忽略第一个加号后面的所有内容。这允许过滤某些电子邮件。同样，此规则 不适用于域名 。</p>
-<p>例如 <a href="mailto:&#x6d;&#46;&#x79;&#43;&#110;&#x61;&#x6d;&#101;&#64;&#x65;&#109;&#97;&#x69;&#x6c;&#46;&#x63;&#111;&#x6d;">&#x6d;&#46;&#x79;&#43;&#110;&#x61;&#x6d;&#101;&#64;&#x65;&#109;&#97;&#x69;&#x6c;&#46;&#x63;&#111;&#x6d;</a> 将转发到 <a href="mailto:&#109;&#121;&#x40;&#101;&#109;&#97;&#x69;&#108;&#x2e;&#x63;&#111;&#109;">&#109;&#121;&#x40;&#101;&#109;&#97;&#x69;&#108;&#x2e;&#x63;&#111;&#109;</a>。<br>可以同时使用这两个规则。</p>
+<p>例如，在 <a href="mailto:&#97;&#x6c;&#x69;&#99;&#101;&#x40;&#108;&#x65;&#101;&#116;&#x63;&#111;&#100;&#x65;&#x2e;&#x63;&#111;&#109;">&#97;&#x6c;&#x69;&#99;&#101;&#x40;&#108;&#x65;&#101;&#116;&#x63;&#111;&#100;&#x65;&#x2e;&#x63;&#111;&#109;</a>中， alice 是 本地名 ，而 leetcode.com 是 域名 。<br>如果在电子邮件地址的 本地名 部分中的某些字符之间添加句点（’.’），则发往那里的邮件将会转发到本地名中没有点的同一地址。请注意，此规则 不适用于域名 。</p>
+<p>例如，”<a href="mailto:&#x61;&#108;&#105;&#99;&#x65;&#46;&#x7a;&#64;&#x6c;&#x65;&#101;&#116;&#99;&#111;&#x64;&#101;&#x2e;&#99;&#111;&#x6d;">&#x61;&#108;&#105;&#99;&#x65;&#46;&#x7a;&#64;&#x6c;&#x65;&#101;&#116;&#99;&#111;&#x64;&#101;&#x2e;&#99;&#111;&#x6d;</a>” 和 “<a href="mailto:&#97;&#108;&#105;&#x63;&#101;&#x7a;&#64;&#108;&#x65;&#x65;&#x74;&#99;&#x6f;&#x64;&#x65;&#46;&#x63;&#x6f;&#109;">&#97;&#108;&#105;&#x63;&#101;&#x7a;&#64;&#108;&#x65;&#x65;&#x74;&#99;&#x6f;&#x64;&#x65;&#46;&#x63;&#x6f;&#109;</a>” 会转发到同一电子邮件地址。<br>如果在 本地名 中添加加号（’+’），则会忽略第一个加号后面的所有内容。这允许过滤某些电子邮件。同样，此规则 不适用于域名 。</p>
+<p>例如 <a href="mailto:&#x6d;&#46;&#121;&#x2b;&#110;&#97;&#x6d;&#101;&#64;&#x65;&#109;&#97;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#109;">&#x6d;&#46;&#121;&#x2b;&#110;&#97;&#x6d;&#101;&#64;&#x65;&#109;&#97;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#109;</a> 将转发到 <a href="mailto:&#x6d;&#x79;&#x40;&#x65;&#x6d;&#97;&#x69;&#108;&#x2e;&#99;&#111;&#109;">&#x6d;&#x79;&#x40;&#x65;&#x6d;&#97;&#x69;&#108;&#x2e;&#99;&#111;&#109;</a>。<br>可以同时使用这两个规则。</p>
 <p>给你一个字符串数组 emails，我们会向每个 emails[i] 发送一封电子邮件。返回实际收到邮件的不同地址数目。</p>
 <h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><pre><code class="java">输入：emails = [&quot;test.email+alex@leetcode.com&quot;,&quot;test.e.mail+bob.cathy@leetcode.com&quot;,&quot;testemail+david@lee.tcode.com&quot;]
 输出：2
@@ -473,7 +485,7 @@
   </entry>
   <entry>
     <title>LeetCode_884-两句话中的不常见单词</title>
-    <url>/Neymarsss/Neymarsss.github.io/2023/03/29/f30bbee890a3/</url>
+    <url>/2023/03/29/f30bbee890a3/</url>
     <content><![CDATA[<h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><p><a href="https://leetcode.cn/problems/uncommon-words-from-two-sentences/">LeetCode_290-单词规律</a></p>
 <h2 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h2><p>哈希表， 字符串</p>
 <h2 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h2><p>句子 是一串由空格分隔的单词。每个 单词 仅由小写字母组成。</p>
@@ -550,57 +562,93 @@
       </tags>
   </entry>
   <entry>
-    <title>LeetCode_496-下一个更大元素I</title>
-    <url>/Neymarsss/Neymarsss.github.io/2023/03/29/2bbb7778feb5/</url>
-    <content><![CDATA[<h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><p><a href="https://leetcode.cn/problems/next-greater-element-i/">LeetCode_496-下一个更大元素I</a></p>
-<h2 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h2><p>哈希表， 字符串</p>
-<h2 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h2><p>nums1 中数字 x 的 下一个更大元素 是指 x 在 nums2 中对应位置 右侧 的 第一个 比 x 大的元素。</p>
-<p>给你两个 没有重复元素 的数组 nums1 和 nums2 ，下标从 0 开始计数，其中nums1 是 nums2 的子集。</p>
-<p>对于每个 0 &lt;&#x3D; i &lt; nums1.length ，找出满足 nums1[i] &#x3D;&#x3D; nums2[j] 的下标 j ，并且在 nums2 确定 nums2[j] 的 下一个更大元素 。如果不存在下一个更大元素，那么本次查询的答案是 -1 。</p>
-<p>返回一个长度为 nums1.length 的数组 ans 作为答案，满足 ans[i] 是如上所述的 下一个更大元素 。</p>
-<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><pre><code class="java">输入：nums1 = [4,1,2], nums2 = [1,3,4,2].
-输出：[-1,3,-1]
-解释：nums1 中每个值的下一个更大元素如下所述：
-- 4 ，用加粗斜体标识，nums2 = [1,3,4,2]。不存在下一个更大元素，所以答案是 -1 。
-- 1 ，用加粗斜体标识，nums2 = [1,3,4,2]。下一个更大元素是 3 。
-- 2 ，用加粗斜体标识，nums2 = [1,3,4,2]。不存在下一个更大元素，所以答案是 -1 。
+    <title>LeetCode_804-唯一摩尔斯密码词</title>
+    <url>/2023/03/29/76ec1b507256/</url>
+    <content><![CDATA[<h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><p><a href="https://leetcode.cn/problems/unique-morse-code-words/">LeetCode_804-唯一摩尔斯密码词</a></p>
+<h2 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h2><p>字符串， 哈希表</p>
+<h2 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h2><p>国际摩尔斯密码定义一种标准编码方式，将每个字母对应于一个由一系列点和短线组成的字符串， 比如:</p>
+<p>‘a’ 对应 “.-“ ，<br>‘b’ 对应 “-…” ，<br>‘c’ 对应 “-.-.” ，以此类推。<br>为了方便，所有 26 个英文字母的摩尔斯密码表如下：</p>
+<p>[“.-“,”-…”,”-.-.”,”-..”,”.”,”..-.”,”–.”,”….”,”..”,”.—“,”-.-“,”.-..”,”–”,”-.”,”—“,”.–.”,”–.-“,”.-.”,”…”,”-“,”..-“,”…-“,”.–”,”-..-“,”-.–”,”–..”]<br>给你一个字符串数组 words ，每个单词可以写成每个字母对应摩尔斯密码的组合。</p>
+<p>例如，”cab” 可以写成 “-.-..–…” ，(即 “-.-.” + “.-“ + “-…” 字符串的结合)。我们将这样一个连接过程称作 单词翻译 。<br>对 words 中所有单词进行单词翻译，返回不同 单词翻译 的数量。</p>
+<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><pre><code class="java">输入: words = [&quot;gin&quot;, &quot;zen&quot;, &quot;gig&quot;, &quot;msg&quot;]
+输出: 2
+解释: 
+各单词翻译如下:
+&quot;gin&quot; -&gt; &quot;--...-.&quot;
+&quot;zen&quot; -&gt; &quot;--...-.&quot;
+&quot;gig&quot; -&gt; &quot;--...--.&quot;
+&quot;msg&quot; -&gt; &quot;--...--.&quot;
 
-输入：nums1 = [2,4], nums2 = [1,2,3,4].
-输出：[3,-1]
-解释：nums1 中每个值的下一个更大元素如下所述：
-- 2 ，用加粗斜体标识，nums2 = [1,2,3,4]。下一个更大元素是 3 。
-- 4 ，用加粗斜体标识，nums2 = [1,2,3,4]。不存在下一个更大元素，所以答案是 -1 。
+共有 2 种不同翻译, &quot;--...-.&quot; 和 &quot;--...--.&quot;.
+
+输入：words = [&quot;a&quot;]
+输出：1
 </code></pre>
 <h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><pre><code class="java">class Solution &#123;
-    public int[] nextGreaterElement(int[] nums1, int[] nums2) &#123;
-        //nums1 是 nums2 的子集
-        HashMap&lt;Integer, Integer&gt; map = new HashMap&lt;&gt;();
-        int n1 = nums1.length;
-        int n2 = nums2.length;
-        int[] ans = new int[n1];
-        //可以记录nums2中：将每一个数字作为key，位置下标为value
-        for(int m = 0; m &lt; n2; m++) &#123;
-            map.put(nums2[m], m);
-        &#125;
-        //遍历nums1，获取每一个数字
-        for(int i = 0; i &lt; n1; i++) &#123;
-            //然后从map中获取该数字对应的下标（该下标对应的是nums2中该数字的下标）
-            int k = map.get(nums1[i]);
-            //做该判断是因为如果k为nums2的最后一个数字的话，下方的j=k+1就会越界
-            //所以如果该数字如果为nums2的最后一个数字的话，name他一定没有比它大的下一个元素，返回-1。
-            if(k == n2 - 1) ans[i] = -1; 
-            for(int j = k + 1; j &lt; n2; j++) &#123;
-                if(nums2[j] &gt; nums2[k]) &#123;
-                    ans[i] = nums2[j];
-                    break;
-                &#125;
-                if(j == n2 - 1 &amp;&amp; nums2[j] &lt;= nums2[k]) &#123;
-                    ans[i] = -1;
-                &#125;
+    public int uniqueMorseRepresentations(String[] words) &#123;
+        Set&lt;String&gt; set = new HashSet&lt;&gt;();
+        for(String word : words) &#123;
+            int len = word.length();
+            StringBuffer ans = new StringBuffer();
+            for(int i = 0; i &lt; len; i++) &#123;
+                char ch = word.charAt(i);
+                ans.append(Morse[ch - &#39;a&#39;]);
             &#125;
+            set.add(ans.toString());
         &#125;
-        return ans;
+        return set.size();
     &#125;
+
+    public static final String Morse[] = &#123;&quot;.-&quot;,&quot;-...&quot;,&quot;-.-.&quot;,&quot;-..&quot;,&quot;.&quot;,&quot;..-.&quot;,&quot;--.&quot;,&quot;....&quot;,&quot;..&quot;,&quot;.---&quot;,&quot;-.-&quot;,&quot;.-..&quot;,&quot;--&quot;,&quot;-.&quot;,&quot;---&quot;,&quot;.--.&quot;,&quot;--.-&quot;,&quot;.-.&quot;,&quot;...&quot;,&quot;-&quot;,&quot;..-&quot;,&quot;...-&quot;,&quot;.--&quot;,&quot;-..-&quot;,&quot;-.--&quot;,&quot;--..&quot;&#125;;
+
+&#125;
+</code></pre>
+]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>字符串</tag>
+        <tag>哈希表</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LeetCode_290--单词规律</title>
+    <url>/2023/03/29/277427764d99/</url>
+    <content><![CDATA[<h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><p><a href="https://leetcode.cn/problems/word-pattern/">LeetCode_290-单词规律</a></p>
+<h2 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h2><p>哈希表， 字符串</p>
+<h2 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h2><p>给定一种规律 pattern 和一个字符串 s ，判断 s 是否遵循相同的规律。</p>
+<p>这里的 遵循 指完全匹配，例如， pattern 里的每个字母和字符串 s 中的每个非空单词之间存在着双向连接的对应规律。</p>
+<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><pre><code class="java">输入: pattern = &quot;abba&quot;, s = &quot;dog cat cat dog&quot;
+输出: true
+
+输入:pattern = &quot;abba&quot;, s = &quot;dog cat cat fish&quot;
+输出: false
+
+输入: pattern = &quot;aaaa&quot;, s = &quot;dog cat cat dog&quot;
+输出: false
+</code></pre>
+<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><pre><code class="java">class Solution &#123;
+    public boolean wordPattern(String pattern, String s) &#123;
+        //定义两个map，来一对一的映射
+        HashMap&lt;Character, String&gt; map = new HashMap&lt;&gt;();
+        HashMap&lt;String, Character&gt; set = new HashMap&lt;&gt;();
+        String[] strs = s.split(&quot; &quot;);
+        //长度必须一致
+        if (strs.length != pattern.length()) return false;
+        int i = 0, j = 0;
+        while (i &lt; pattern.length() &amp;&amp; j &lt; strs.length) &#123;
+            Character ch = pattern.charAt(i);
+            //下面两种是不存在的情况
+            if (map.containsKey(ch) &amp;&amp; !map.get(ch).equals(strs[j]))   return false;
+            if (set.containsKey(strs[j]) &amp;&amp; set.get(strs[j]) != ch) 
+                return false;
+            map.put(ch, strs[j]);
+            set.put(strs[j], ch);
+            i++; j++;
+        &#125;
+        return true;
+    &#125;  
 &#125;
 </code></pre>
 ]]></content>
@@ -614,7 +662,7 @@
   </entry>
   <entry>
     <title>LeetCode_1002-查找公共字符</title>
-    <url>/Neymarsss/Neymarsss.github.io/2023/03/29/76234e815a1c/</url>
+    <url>/2023/03/29/76234e815a1c/</url>
     <content><![CDATA[<h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><p><a href="https://leetcode.cn/problems/find-common-characters/">LeetCode_1002-查找公共字符</a></p>
 <h2 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h2><p>哈希表， 字符串</p>
 <h2 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h2><p>给你一个字符串数组 words ，请你找出所有在 words 的每个字符串中都出现的共用字符（ <strong>包括重复字符</strong>），并以数组形式返回。你可以按 <strong>任意顺序</strong> 返回答案。</p>
@@ -695,7 +743,7 @@
   </entry>
   <entry>
     <title>LeetCode_389-找不同</title>
-    <url>/Neymarsss/Neymarsss.github.io/2023/03/29/79365b5a1808/</url>
+    <url>/2023/03/29/79365b5a1808/</url>
     <content><![CDATA[<h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><p><a href="https://leetcode.cn/problems/find-the-difference/">LeetCode_389-找不同</a></p>
 <h2 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h2><p>哈希表， 字符串</p>
 <h2 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h2><p>给定两个字符串 <code>s</code> 和 <code>t</code> ，它们只包含小写字母。</p>
@@ -759,56 +807,8 @@
       </tags>
   </entry>
   <entry>
-    <title>LeetCode_290--单词规律</title>
-    <url>/Neymarsss/Neymarsss.github.io/2023/03/29/277427764d99/</url>
-    <content><![CDATA[<h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><p><a href="https://leetcode.cn/problems/word-pattern/">LeetCode_290-单词规律</a></p>
-<h2 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h2><p>哈希表， 字符串</p>
-<h2 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h2><p>给定一种规律 pattern 和一个字符串 s ，判断 s 是否遵循相同的规律。</p>
-<p>这里的 遵循 指完全匹配，例如， pattern 里的每个字母和字符串 s 中的每个非空单词之间存在着双向连接的对应规律。</p>
-<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><pre><code class="java">输入: pattern = &quot;abba&quot;, s = &quot;dog cat cat dog&quot;
-输出: true
-
-输入:pattern = &quot;abba&quot;, s = &quot;dog cat cat fish&quot;
-输出: false
-
-输入: pattern = &quot;aaaa&quot;, s = &quot;dog cat cat dog&quot;
-输出: false
-</code></pre>
-<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><pre><code class="java">class Solution &#123;
-    public boolean wordPattern(String pattern, String s) &#123;
-        //定义两个map，来一对一的映射
-        HashMap&lt;Character, String&gt; map = new HashMap&lt;&gt;();
-        HashMap&lt;String, Character&gt; set = new HashMap&lt;&gt;();
-        String[] strs = s.split(&quot; &quot;);
-        //长度必须一致
-        if (strs.length != pattern.length()) return false;
-        int i = 0, j = 0;
-        while (i &lt; pattern.length() &amp;&amp; j &lt; strs.length) &#123;
-            Character ch = pattern.charAt(i);
-            //下面两种是不存在的情况
-            if (map.containsKey(ch) &amp;&amp; !map.get(ch).equals(strs[j]))   return false;
-            if (set.containsKey(strs[j]) &amp;&amp; set.get(strs[j]) != ch) 
-                return false;
-            map.put(ch, strs[j]);
-            set.put(strs[j], ch);
-            i++; j++;
-        &#125;
-        return true;
-    &#125;  
-&#125;
-</code></pre>
-]]></content>
-      <categories>
-        <category>LeetCode</category>
-      </categories>
-      <tags>
-        <tag>字符串</tag>
-        <tag>哈希表</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hello World</title>
-    <url>/Neymarsss/Neymarsss.github.io/2023/03/27/54f15610365d/</url>
+    <url>/2023/03/27/54f15610365d/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;
 </code></pre>
