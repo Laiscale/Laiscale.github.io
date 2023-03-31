@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>全局异常处理定义</title>
-    <url>/laiscale.top/2023/03/31/cab4df8af986/</url>
+    <url>/2023/03/31/cab4df8af986/</url>
     <content><![CDATA[<h2 id="定义枚举类"><a href="#定义枚举类" class="headerlink" title="定义枚举类"></a>定义<strong>枚举类</strong></h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> <span class="title class_">AppHttpCodeEnum</span> &#123;</span><br><span class="line">    <span class="comment">// 成功</span></span><br><span class="line">    SUCCESS(<span class="number">200</span>,<span class="string">&quot;操作成功&quot;</span>),</span><br><span class="line">    <span class="comment">// 登录</span></span><br><span class="line">    NEED_LOGIN(<span class="number">401</span>,<span class="string">&quot;需要登录后操作&quot;</span>),</span><br><span class="line">    NO_OPERATOR_AUTH(<span class="number">403</span>,<span class="string">&quot;无权限操作&quot;</span>),</span><br><span class="line">    SYSTEM_ERROR(<span class="number">500</span>,<span class="string">&quot;出现错误&quot;</span>),</span><br><span class="line">    USERNAME_EXIST(<span class="number">501</span>,<span class="string">&quot;用户名已存在&quot;</span>),</span><br><span class="line">     PHONENUMBER_EXIST(<span class="number">502</span>,<span class="string">&quot;手机号已存在&quot;</span>), EMAIL_EXIST(<span class="number">503</span>, <span class="string">&quot;邮箱已存在&quot;</span>),</span><br><span class="line">    REQUIRE_USERNAME(<span class="number">504</span>, <span class="string">&quot;必需填写用户名&quot;</span>),</span><br><span class="line">    LOGIN_ERROR(<span class="number">505</span>,<span class="string">&quot;用户名或密码错误&quot;</span>),</span><br><span class="line">    CONTENT_NOT_NULL(<span class="number">506</span>, <span class="string">&quot;评论内容不能为空&quot;</span>),</span><br><span class="line">    FILE_TYPE_ERROR(<span class="number">507</span>, <span class="string">&quot;文件类型错误，请上传png文件&quot;</span>),</span><br><span class="line">    USERNAME_NOT_NULL(<span class="number">508</span>, <span class="string">&quot;用户名不能为空&quot;</span>),</span><br><span class="line">    NICKNAME_NOT_NULL(<span class="number">509</span>, <span class="string">&quot;昵称不能为空&quot;</span>),</span><br><span class="line">    PASSWORD_NOT_NULL(<span class="number">510</span>, <span class="string">&quot;密码不能为空&quot;</span>),</span><br><span class="line">    EMAIL_NOT_NULL(<span class="number">511</span>, <span class="string">&quot;邮箱不能为空&quot;</span>),</span><br><span class="line">    NICKNAME_EXIST(<span class="number">512</span>, <span class="string">&quot;昵称已存在&quot;</span>),</span><br><span class="line">    PRODUCT_EXIST(<span class="number">513</span>, <span class="string">&quot;当前分类关联的商品存在，不能删除&quot;</span>),</span><br><span class="line">    CHILDREN_CATEGORY_EXIST(<span class="number">514</span>, <span class="string">&quot;当前分类关联的子分类，不能删除&quot;</span>);</span><br><span class="line">    <span class="type">int</span> code;</span><br><span class="line">    String msg;</span><br><span class="line"></span><br><span class="line">    AppHttpCodeEnum(<span class="type">int</span> code, String errorMessage)&#123;</span><br><span class="line">        <span class="built_in">this</span>.code = code;</span><br><span class="line">        <span class="built_in">this</span>.msg = errorMessage;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getCode</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getMsg</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> msg;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="定义异常处理类"><a href="#定义异常处理类" class="headerlink" title="定义异常处理类"></a>定义异常处理类</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SystemException</span> <span class="keyword">extends</span> <span class="title class_">RuntimeException</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> code;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String msg;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getCode</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getMsg</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> msg;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">SystemException</span><span class="params">(AppHttpCodeEnum httpCodeEnum)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(httpCodeEnum.getMsg());</span><br><span class="line">        <span class="built_in">this</span>.code = httpCodeEnum.getCode();</span><br><span class="line">        <span class="built_in">this</span>.msg = httpCodeEnum.getMsg();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -20,7 +20,7 @@
   </entry>
   <entry>
     <title>SpringBoot的一些常用工具类</title>
-    <url>/laiscale.top/2023/03/31/c52a3290bb19/</url>
+    <url>/2023/03/31/c52a3290bb19/</url>
     <content><![CDATA[<h2 id="引入的常用依赖"><a href="#引入的常用依赖" class="headerlink" title="引入的常用依赖"></a>引入的常用依赖</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-boot-starter-security&lt;/artifactId&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.mybatis.spring.boot&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;mybatis-spring-boot-starter&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;<span class="number">2.3</span><span class="number">.0</span>&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;com.mysql&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;mysql-connector-j&lt;/artifactId&gt;</span><br><span class="line">        &lt;scope&gt;runtime&lt;/scope&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;lombok&lt;/artifactId&gt;</span><br><span class="line">        &lt;optional&gt;<span class="literal">true</span>&lt;/optional&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;</span><br><span class="line">        &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.security&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-security-test&lt;/artifactId&gt;</span><br><span class="line">        &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;io.jsonwebtoken&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;jjwt&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;<span class="number">0.9</span><span class="number">.1</span>&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;com.baomidou&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;mybatis-plus-boot-starter&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;<span class="number">3.4</span><span class="number">.2</span>&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.apache.commons&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;commons-lang3&lt;/artifactId&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- swagger依赖引入 --&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;io.springfox&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;springfox-swagger2&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;<span class="number">2.7</span><span class="number">.0</span>&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;io.springfox&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;springfox-swagger-ui&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;<span class="number">2.7</span><span class="number">.0</span>&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!--druid连接池依赖--&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;com.alibaba&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;druid&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;<span class="number">1.2</span><span class="number">.15</span>&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;com.alibaba&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;druid-spring-boot-starter&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;<span class="number">1.2</span><span class="number">.15</span>&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!--Redis依赖--&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-boot-starter-data-redis&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;<span class="number">2.4</span><span class="number">.0</span>&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;com.alibaba&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;fastjson&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;<span class="number">1.2</span><span class="number">.33</span>&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">&lt;/dependencies&gt;</span><br></pre></td></tr></table></figure>
 
 <h2 id="一些配置类-Configuration"><a href="#一些配置类-Configuration" class="headerlink" title="一些配置类(@Configuration)"></a>一些配置类(@Configuration)</h2><h3 id="跨域处理配置"><a href="#跨域处理配置" class="headerlink" title="跨域处理配置"></a>跨域处理配置</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CorsConfig</span> <span class="keyword">implements</span> <span class="title class_">WebMvcConfigurer</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addCorsMappings</span><span class="params">(CorsRegistry registry)</span> &#123;</span><br><span class="line">      <span class="comment">// 设置允许跨域的路径</span></span><br><span class="line">        registry.addMapping(<span class="string">&quot;/**&quot;</span>)</span><br><span class="line">                <span class="comment">// 设置允许跨域请求的域名</span></span><br><span class="line">                .allowedOriginPatterns(<span class="string">&quot;*&quot;</span>)</span><br><span class="line">                <span class="comment">// 是否允许cookie</span></span><br><span class="line">                .allowCredentials(<span class="literal">true</span>)</span><br><span class="line">                <span class="comment">// 设置允许的请求方式</span></span><br><span class="line">                .allowedMethods(<span class="string">&quot;GET&quot;</span>, <span class="string">&quot;POST&quot;</span>, <span class="string">&quot;DELETE&quot;</span>, <span class="string">&quot;PUT&quot;</span>)</span><br><span class="line">                <span class="comment">// 设置允许的header属性</span></span><br><span class="line">                .allowedHeaders(<span class="string">&quot;*&quot;</span>)</span><br><span class="line">                <span class="comment">// 跨域允许时间</span></span><br><span class="line">                .maxAge(<span class="number">3600</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -66,7 +66,7 @@
   </entry>
   <entry>
     <title>七牛云实现对象存储的步骤</title>
-    <url>/laiscale.top/2023/03/30/e1fb9fdc8377/</url>
+    <url>/2023/03/30/e1fb9fdc8377/</url>
     <content><![CDATA[<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>七牛对象存储将数据文件以资源的形式上传到空间中。您可以创建一个或者多个空间，然后向每个空间中上传一个或多个文件。通过获取已上传文件的地址进行文件的分享和下载。您还可以通过修改存储空间或文件的属性或元信息来设置相应的访问权限。</p>
 <h2 id="创建过程"><a href="#创建过程" class="headerlink" title="创建过程"></a>创建过程</h2><p>在以下步骤开始之前，需要先完成在七牛云平台的用户注册登录以及实名认证</p>
 <h3 id="一、创建空间"><a href="#一、创建空间" class="headerlink" title="一、创建空间"></a>一、创建空间</h3><p>打开七牛云平台之后，进入<strong>空间管理</strong>页面</p>
@@ -91,7 +91,7 @@
   </entry>
   <entry>
     <title>SpringSecurity的认识与使用</title>
-    <url>/laiscale.top/2023/03/30/14552f325ee2/</url>
+    <url>/2023/03/30/14552f325ee2/</url>
     <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><strong>Spring Security</strong> 是 Spring 家族中的一个安全管理框架。相比与另外一个安全框架<strong>Shiro</strong>，它提供了更丰富的功能，社区资源也比Shiro丰富。</p>
 <p>​	一般来说中大型的项目都是使用<strong>SpringSecurity</strong> 来做安全框架。小项目有Shiro的比较多，因为相比与SpringSecurity，Shiro的上手更加的简单。</p>
 <p>​	一般Web应用的需要进行<strong>认证</strong>和<strong>授权</strong>。</p>
@@ -190,7 +190,7 @@
   </entry>
   <entry>
     <title>LeetCode_771-宝石与石头</title>
-    <url>/laiscale.top/2023/03/29/7870dad5b771/</url>
+    <url>/2023/03/29/7870dad5b771/</url>
     <content><![CDATA[<h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><p><a href="https://leetcode.cn/problems/jewels-and-stones/">LeetCode_771-宝石与石头</a></p>
 <h2 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h2><p>字符串，哈希表</p>
 <h2 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h2><p>给你一个字符串 jewels 代表石头中宝石的类型，另有一个字符串 stones 代表你拥有的石头。 stones 中每个字符代表了一种你拥有的石头的类型，你想知道你拥有的石头中有多少是宝石。</p>
@@ -207,13 +207,13 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>字符串</tag>
         <tag>哈希表</tag>
+        <tag>字符串</tag>
       </tags>
   </entry>
   <entry>
     <title>LeetCode_709-转换成小写字母</title>
-    <url>/laiscale.top/2023/03/29/8ab92c6f780d/</url>
+    <url>/2023/03/29/8ab92c6f780d/</url>
     <content><![CDATA[<h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><p><a href="https://leetcode.cn/problems/to-lower-case/">LeetCode_709-转换成小写字母</a></p>
 <h2 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h2><p>字符串</p>
 <h2 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h2><p>给你一个字符串 <code>s</code> ，将该字符串中的大写字母转换成相同的小写字母，返回新的字符串。</p>
@@ -230,7 +230,7 @@
   </entry>
   <entry>
     <title>LeetCode_657-机器人能否返回原点</title>
-    <url>/laiscale.top/2023/03/29/25ac54a4a790/</url>
+    <url>/2023/03/29/25ac54a4a790/</url>
     <content><![CDATA[<h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><p><a href="https://leetcode.cn/problems/robot-return-to-origin/">LeetCode_657-机器人能否返回原点</a></p>
 <h2 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h2><p>字符串</p>
 <h2 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h2><p>在二维平面上，有一个机器人从原点 (0, 0) 开始。给出它的移动顺序，判断这个机器人在完成移动后是否在 (0, 0) 处结束。</p>
@@ -250,7 +250,7 @@
   </entry>
   <entry>
     <title>LeetCode_242-有效的字母异位词</title>
-    <url>/laiscale.top/2023/03/29/34a2e1c85f37/</url>
+    <url>/2023/03/29/34a2e1c85f37/</url>
     <content><![CDATA[<h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><p><a href="https://leetcode.cn/problems/valid-anagram/">LeetCode_242-有效的字母异位词</a></p>
 <h2 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h2><p>字符串, 哈希表，位运算</p>
 <h2 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h2><p>给定两个字符串 s 和 t ，编写一个函数来判断 t 是否是 s 的字母异位词。</p>
@@ -268,14 +268,14 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>字符串</tag>
         <tag>哈希表</tag>
+        <tag>字符串</tag>
         <tag>位运算</tag>
       </tags>
   </entry>
   <entry>
     <title>LeetCode_804-唯一摩尔斯密码词</title>
-    <url>/laiscale.top/2023/03/29/76ec1b507256/</url>
+    <url>/2023/03/29/76ec1b507256/</url>
     <content><![CDATA[<h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><p><a href="https://leetcode.cn/problems/unique-morse-code-words/">LeetCode_804-唯一摩尔斯密码词</a></p>
 <h2 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h2><p>字符串， 哈希表</p>
 <h2 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h2><p>国际摩尔斯密码定义一种标准编码方式，将每个字母对应于一个由一系列点和短线组成的字符串， 比如:</p>
@@ -290,13 +290,13 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>字符串</tag>
         <tag>哈希表</tag>
+        <tag>字符串</tag>
       </tags>
   </entry>
   <entry>
     <title>LeetCode_525-检测大写字母</title>
-    <url>/laiscale.top/2023/03/29/7c403eebe015/</url>
+    <url>/2023/03/29/7c403eebe015/</url>
     <content><![CDATA[<h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><p><a href="https://leetcode.cn/problems/detect-capital/">LeetCode_525-检测大写字母</a></p>
 <h2 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h2><p>字符串</p>
 <h2 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h2><p>我们定义，在以下情况时，单词的大写用法是正确的：</p>
@@ -319,7 +319,7 @@
   </entry>
   <entry>
     <title>LeetCode_415-字符串相加</title>
-    <url>/laiscale.top/2023/03/29/3370c052b901/</url>
+    <url>/2023/03/29/3370c052b901/</url>
     <content><![CDATA[<h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><p><a href="https://leetcode.cn/problems/add-strings/">LeetCode_415-字符串相加</a></p>
 <h2 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h2><p>字符串</p>
 <h2 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h2><p>给定两个字符串形式的非负整数 num1 和num2 ，计算它们的和并同样以字符串形式返回。</p>
@@ -338,7 +338,7 @@
   </entry>
   <entry>
     <title>LeetCode_521-最长特殊序列Ⅰ</title>
-    <url>/laiscale.top/2023/03/29/2fc927ffcb4b/</url>
+    <url>/2023/03/29/2fc927ffcb4b/</url>
     <content><![CDATA[<h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><p><a href="https://leetcode.cn/problems/longest-uncommon-subsequence-i/">LeetCode_521-最长特殊序列Ⅰ</a></p>
 <h2 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h2><p>字符串</p>
 <h2 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h2><p>给你两个字符串 a 和 b，请返回 这两个字符串中 最长的特殊序列  的长度。如果不存在，则返回 -1 。</p>
@@ -358,13 +358,13 @@
   </entry>
   <entry>
     <title>LeetCode_929-独特的电子邮件地址</title>
-    <url>/laiscale.top/2023/03/29/880149c0df5f/</url>
+    <url>/2023/03/29/880149c0df5f/</url>
     <content><![CDATA[<h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><p><a href="https://leetcode.cn/problems/unique-email-addresses/">LeetCode_929-独特的电子邮件地址</a></p>
 <h2 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h2><p>哈希表， 字符串</p>
 <h2 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h2><p>每个 有效电子邮件地址 都由一个 本地名 和一个 域名 组成，以 ‘@’ 符号分隔。除小写字母之外，电子邮件地址还可以含有一个或多个 ‘.’ 或 ‘+’ 。</p>
-<p>例如，在 <a href="mailto:&#97;&#x6c;&#105;&#99;&#101;&#64;&#x6c;&#101;&#x65;&#116;&#x63;&#111;&#x64;&#x65;&#x2e;&#x63;&#x6f;&#109;">&#97;&#x6c;&#105;&#99;&#101;&#64;&#x6c;&#101;&#x65;&#116;&#x63;&#111;&#x64;&#x65;&#x2e;&#x63;&#x6f;&#109;</a>中， alice 是 本地名 ，而 leetcode.com 是 域名 。<br>如果在电子邮件地址的 本地名 部分中的某些字符之间添加句点（’.’），则发往那里的邮件将会转发到本地名中没有点的同一地址。请注意，此规则 不适用于域名 。</p>
-<p>例如，”<a href="mailto:&#x61;&#108;&#105;&#x63;&#101;&#46;&#x7a;&#64;&#108;&#x65;&#x65;&#x74;&#x63;&#111;&#x64;&#x65;&#46;&#x63;&#x6f;&#109;">&#x61;&#108;&#105;&#x63;&#101;&#46;&#x7a;&#64;&#108;&#x65;&#x65;&#x74;&#x63;&#111;&#x64;&#x65;&#46;&#x63;&#x6f;&#109;</a>” 和 “<a href="mailto:&#97;&#x6c;&#x69;&#99;&#101;&#122;&#x40;&#x6c;&#101;&#101;&#116;&#x63;&#111;&#100;&#x65;&#46;&#99;&#111;&#x6d;">&#97;&#x6c;&#x69;&#99;&#101;&#122;&#x40;&#x6c;&#101;&#101;&#116;&#x63;&#111;&#100;&#x65;&#46;&#99;&#111;&#x6d;</a>” 会转发到同一电子邮件地址。<br>如果在 本地名 中添加加号（’+’），则会忽略第一个加号后面的所有内容。这允许过滤某些电子邮件。同样，此规则 不适用于域名 。</p>
-<p>例如 <a href="mailto:&#109;&#x2e;&#121;&#x2b;&#110;&#97;&#109;&#x65;&#x40;&#101;&#x6d;&#x61;&#105;&#108;&#x2e;&#99;&#x6f;&#x6d;">&#109;&#x2e;&#121;&#x2b;&#110;&#97;&#109;&#x65;&#x40;&#101;&#x6d;&#x61;&#105;&#108;&#x2e;&#99;&#x6f;&#x6d;</a> 将转发到 <a href="mailto:&#x6d;&#121;&#x40;&#101;&#x6d;&#x61;&#x69;&#x6c;&#46;&#x63;&#111;&#x6d;">&#x6d;&#121;&#x40;&#101;&#x6d;&#x61;&#x69;&#x6c;&#46;&#x63;&#111;&#x6d;</a>。<br>可以同时使用这两个规则。</p>
+<p>例如，在 <a href="mailto:&#97;&#108;&#x69;&#99;&#101;&#x40;&#108;&#x65;&#101;&#116;&#x63;&#111;&#100;&#101;&#x2e;&#x63;&#111;&#109;">&#97;&#108;&#x69;&#99;&#101;&#x40;&#108;&#x65;&#101;&#116;&#x63;&#111;&#100;&#101;&#x2e;&#x63;&#111;&#109;</a>中， alice 是 本地名 ，而 leetcode.com 是 域名 。<br>如果在电子邮件地址的 本地名 部分中的某些字符之间添加句点（’.’），则发往那里的邮件将会转发到本地名中没有点的同一地址。请注意，此规则 不适用于域名 。</p>
+<p>例如，”<a href="mailto:&#x61;&#x6c;&#105;&#x63;&#x65;&#x2e;&#x7a;&#x40;&#x6c;&#101;&#x65;&#116;&#x63;&#x6f;&#x64;&#x65;&#46;&#x63;&#x6f;&#x6d;">&#x61;&#x6c;&#105;&#x63;&#x65;&#x2e;&#x7a;&#x40;&#x6c;&#101;&#x65;&#116;&#x63;&#x6f;&#x64;&#x65;&#46;&#x63;&#x6f;&#x6d;</a>” 和 “<a href="mailto:&#97;&#108;&#x69;&#x63;&#x65;&#122;&#64;&#108;&#x65;&#101;&#116;&#x63;&#111;&#x64;&#101;&#46;&#x63;&#111;&#x6d;">&#97;&#108;&#x69;&#x63;&#x65;&#122;&#64;&#108;&#x65;&#101;&#116;&#x63;&#111;&#x64;&#101;&#46;&#x63;&#111;&#x6d;</a>” 会转发到同一电子邮件地址。<br>如果在 本地名 中添加加号（’+’），则会忽略第一个加号后面的所有内容。这允许过滤某些电子邮件。同样，此规则 不适用于域名 。</p>
+<p>例如 <a href="mailto:&#109;&#x2e;&#121;&#x2b;&#x6e;&#x61;&#x6d;&#101;&#64;&#x65;&#x6d;&#97;&#x69;&#x6c;&#x2e;&#99;&#111;&#x6d;">&#109;&#x2e;&#121;&#x2b;&#x6e;&#x61;&#x6d;&#101;&#64;&#x65;&#x6d;&#97;&#x69;&#x6c;&#x2e;&#99;&#111;&#x6d;</a> 将转发到 <a href="mailto:&#x6d;&#x79;&#64;&#101;&#109;&#x61;&#x69;&#x6c;&#46;&#x63;&#111;&#109;">&#x6d;&#x79;&#64;&#101;&#109;&#x61;&#x69;&#x6c;&#46;&#x63;&#111;&#109;</a>。<br>可以同时使用这两个规则。</p>
 <p>给你一个字符串数组 emails，我们会向每个 emails[i] 发送一封电子邮件。返回实际收到邮件的不同地址数目。</p>
 <h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">输入：emails = [<span class="string">&quot;test.email+alex@leetcode.com&quot;</span>,<span class="string">&quot;test.e.mail+bob.cathy@leetcode.com&quot;</span>,<span class="string">&quot;testemail+david@lee.tcode.com&quot;</span>]</span><br><span class="line">输出：<span class="number">2</span></span><br><span class="line">解释：实际收到邮件的是 <span class="string">&quot;testemail@leetcode.com&quot;</span> 和 <span class="string">&quot;testemail@lee.tcode.com&quot;</span>。</span><br><span class="line"></span><br><span class="line">输入：emails = [<span class="string">&quot;a@leetcode.com&quot;</span>,<span class="string">&quot;b@leetcode.com&quot;</span>,<span class="string">&quot;c@leetcode.com&quot;</span>]</span><br><span class="line">输出：<span class="number">3</span></span><br></pre></td></tr></table></figure>
 
@@ -374,13 +374,13 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>字符串</tag>
         <tag>哈希表</tag>
+        <tag>字符串</tag>
       </tags>
   </entry>
   <entry>
     <title>LeetCode_884-两句话中的不常见单词</title>
-    <url>/laiscale.top/2023/03/29/f30bbee890a3/</url>
+    <url>/2023/03/29/f30bbee890a3/</url>
     <content><![CDATA[<h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><p><a href="https://leetcode.cn/problems/uncommon-words-from-two-sentences/">LeetCode_290-单词规律</a></p>
 <h2 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h2><p>哈希表， 字符串</p>
 <h2 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h2><p>句子 是一串由空格分隔的单词。每个 单词 仅由小写字母组成。</p>
@@ -394,13 +394,13 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>字符串</tag>
         <tag>哈希表</tag>
+        <tag>字符串</tag>
       </tags>
   </entry>
   <entry>
     <title>LeetCode_496-下一个更大元素I</title>
-    <url>/laiscale.top/2023/03/29/2bbb7778feb5/</url>
+    <url>/2023/03/29/2bbb7778feb5/</url>
     <content><![CDATA[<h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><p><a href="https://leetcode.cn/problems/next-greater-element-i/">LeetCode_496-下一个更大元素I</a></p>
 <h2 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h2><p>哈希表， 字符串</p>
 <h2 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h2><p>nums1 中数字 x 的 下一个更大元素 是指 x 在 nums2 中对应位置 右侧 的 第一个 比 x 大的元素。</p>
@@ -415,13 +415,13 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>字符串</tag>
         <tag>哈希表</tag>
+        <tag>字符串</tag>
       </tags>
   </entry>
   <entry>
     <title>LeetCode_1002-查找公共字符</title>
-    <url>/laiscale.top/2023/03/29/76234e815a1c/</url>
+    <url>/2023/03/29/76234e815a1c/</url>
     <content><![CDATA[<h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><p><a href="https://leetcode.cn/problems/find-common-characters/">LeetCode_1002-查找公共字符</a></p>
 <h2 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h2><p>哈希表， 字符串</p>
 <h2 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h2><p>给你一个字符串数组 words ，请你找出所有在 words 的每个字符串中都出现的共用字符（ <strong>包括重复字符</strong>），并以数组形式返回。你可以按 <strong>任意顺序</strong> 返回答案。</p>
@@ -433,13 +433,13 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>字符串</tag>
         <tag>哈希表</tag>
+        <tag>字符串</tag>
       </tags>
   </entry>
   <entry>
     <title>LeetCode_389-找不同</title>
-    <url>/laiscale.top/2023/03/29/79365b5a1808/</url>
+    <url>/2023/03/29/79365b5a1808/</url>
     <content><![CDATA[<h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><p><a href="https://leetcode.cn/problems/find-the-difference/">LeetCode_389-找不同</a></p>
 <h2 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h2><p>哈希表， 字符串</p>
 <h2 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h2><p>给定两个字符串 <code>s</code> 和 <code>t</code> ，它们只包含小写字母。</p>
@@ -454,13 +454,13 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>字符串</tag>
         <tag>哈希表</tag>
+        <tag>字符串</tag>
       </tags>
   </entry>
   <entry>
     <title>LeetCode_290--单词规律</title>
-    <url>/laiscale.top/2023/03/29/277427764d99/</url>
+    <url>/2023/03/29/277427764d99/</url>
     <content><![CDATA[<h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><p><a href="https://leetcode.cn/problems/word-pattern/">LeetCode_290-单词规律</a></p>
 <h2 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h2><p>哈希表， 字符串</p>
 <h2 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h2><p>给定一种规律 pattern 和一个字符串 s ，判断 s 是否遵循相同的规律。</p>
@@ -472,8 +472,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>字符串</tag>
         <tag>哈希表</tag>
+        <tag>字符串</tag>
       </tags>
   </entry>
 </search>
